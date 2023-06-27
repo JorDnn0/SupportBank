@@ -1,4 +1,4 @@
-class Account {
+class Acnt {
     private bal:number = 0
     constructor(initBal:number=0) {
         this.bal = initBal
@@ -11,7 +11,7 @@ class Account {
         this.bal -= toSub
     }
 
-    public transfer(from:Account, to:Account, toTransfer:number){
+    public transfer(from:Acnt, to:Acnt, toTransfer:number){
         from.sub(toTransfer)
         to.add(toTransfer)
     }
