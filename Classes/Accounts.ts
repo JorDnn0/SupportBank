@@ -25,7 +25,6 @@ export class Accounts{
             //console.log(this.accountMap)
             if(account==undefined){
                 console.log("undefined Account")
-                return newAccount
             } else{
                 return account
             }
