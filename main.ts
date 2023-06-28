@@ -1,8 +1,11 @@
 
-import { TxnCsv } from "./Classes/File";
+import { CSV } from "./Classes/File";
+import * as readline from 'readline';
 function main(){
-    let transactions = new TxnCsv("./Transactions2014.csv")
-
+    let csvData = new CSV("./Transactions2014.csv")
 }
+
+
+
 
 main()

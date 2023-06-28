@@ -1,12 +1,12 @@
 import {Accounts} from "./Accounts";
 import {Txn} from "./Transaction";
 import {Txns} from "./Transactions";
-
+import {UserInput} from "./UserInput";
 const fs = require("fs");
 const { parse } = require("csv-parse");
 
-export class TxnCsv {
-    public txns = new Txns()
+export class CSV {
+    public txns:Txns = new Txns()
     constructor(csvPath:string) {
         const self = this;
         fs.createReadStream(csvPath)
@@ -17,10 +17,10 @@ export class TxnCsv {
                 self.txns.addTxn(newTxn)
             })
             .on("end", function () {
-             console.log("reading CSV done")
-            self.txns.process()
+                console.log("reading CSV done")
+                self.txns.process()
+                UserInput.getCmd(self.txns)
         })
-
 
         }
 

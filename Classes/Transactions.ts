@@ -3,7 +3,7 @@ import {Accounts} from "./Accounts";
 import {Account} from "./Account";
 export class Txns{
     private unprocessedTxns:Txn[]
-    private accounts = new Accounts()
+    public accounts = new Accounts()
 
     constructor(unprocessedTxns:Txn[] = []) {
         this.unprocessedTxns = unprocessedTxns
@@ -22,13 +22,13 @@ export class Txns{
         for (let txn of this.unprocessedTxns){
 
             //create accounts
-            let from = this.accounts.addName(txn.from)
-            let to = this.accounts.addName(txn.to)
+             this.accounts.addName(txn.from)
+             this.accounts.addName(txn.to)
 
             if(this.accounts.accountMap.get(txn.from)==undefined){
                 console.log("help")
             } else{
-                this.transfer(from,to,txn.amount)
+                this.transfer(txn)
             }
         }
         this.unprocessedTxns = []
@@ -36,9 +36,19 @@ export class Txns{
         this.accounts.log()
     }
 
-    transfer(from:Account, to:Account, toTransfer:number){
-        from.sub(toTransfer)
-        to.add(toTransfer)
-        console.log("paid: "+toTransfer+" from "+from.name+" to "+ to.name+":::: final balances:"+from.getBal(),to.getBal())
+    transfer(txn:Txn){
+        let from = this.accounts.accountMap.get(txn.from)
+        let to = this.accounts.accountMap.get(txn.to)
+        if(from==undefined||to==undefined){
+            console.log("error: undefined")
+        }else{
+            from.sub(txn.amount)
+            to.add(txn.amount)
+
+            //add transactions to list
+            from.txns.push(txn)
+            to.txns.push(txn)
+            console.log("paid: "+txn.amount+" from "+from.name+" to "+ to.name+":::: final balances:"+from.getBal(),to.getBal())
+        }
     }
 }
