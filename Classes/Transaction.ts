@@ -1,6 +1,7 @@
+import {Account} from "./Account";
 
 
-class Txn {
+export class Txn {
     from:Account
     to:Account
     date:string

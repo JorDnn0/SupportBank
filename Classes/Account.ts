@@ -1,6 +1,4 @@
-
-
-class Account {
+export class Account {
     private bal:number = 0
     public name:string
     constructor(name,initBal:number=0) {

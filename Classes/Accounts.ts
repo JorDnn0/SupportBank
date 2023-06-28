@@ -1,6 +1,9 @@
-class Accounts{
-    public accountArr:{name:string,account:Account}
+import {Account} from "./Account";
+
+export class Accounts{
+    public accountArr: Record<string, Account> = {};
     constructor(){
+        this.accountArr = {}
     }
 
     //returns true if new account created, else false
