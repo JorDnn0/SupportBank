@@ -19,7 +19,9 @@ export class CSV {
             .on("end", function () {
                 console.log("reading CSV done")
                 self.txns.process()
-                UserInput.getCmd(self.txns)
+
+                //===== Get User Input =====
+                //UserInput.getCmd(self.txns)
         })
 
         }
