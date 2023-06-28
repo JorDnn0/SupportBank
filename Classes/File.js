@@ -1,16 +1,21 @@
 "use strict";
 exports.__esModule = true;
-exports.CSV = void 0;
+exports.TxnCsv = void 0;
 var fs = require("fs");
 var parse = require("csv-parse").parse;
-var CSV = /** @class */ (function () {
-    function CSV(csvPath) {
+var TxnCsv = /** @class */ (function () {
+    function TxnCsv(csvPath) {
+        this.txn = [];
+        var accountArr = new Acnts();
         fs.createReadStream(csvPath)
             .pipe(parse({ delimiter: ",", from_line: 2 }))
             .on("data", function (row) {
             console.log(row);
+            //create account
+            accountArr.addName(row[2]);
+            //create txn
         });
     }
-    return CSV;
+    return TxnCsv;
 }());
-exports.CSV = CSV;
+exports.TxnCsv = TxnCsv;
