@@ -9,14 +9,13 @@ var Account = /** @class */ (function () {
         this.name = name;
     }
     Account.prototype.add = function (toAdd) {
-        this.bal += toAdd;
+        this.bal = this.bal + toAdd;
     };
     Account.prototype.sub = function (toSub) {
-        this.bal -= toSub;
+        this.bal = Math.round(this.bal - toSub * 100) / 100;
     };
-    Account.prototype.transfer = function (from, to, toTransfer) {
-        from.sub(toTransfer);
-        to.add(toTransfer);
+    Account.prototype.getBal = function () {
+        return this.bal;
     };
     return Account;
 }());
